@@ -1,0 +1,3 @@
+ai4bharat/conformer-hi-gpu--t4	hi
+ai4bharat/conformer-multilingual-indo_aryan-gpu--t4	bn, gu, mr, or, pa, sa, ur
+ai4bharat/conformer-multilingual-dravidian-gpu--t4	kn, ml, ta, te
