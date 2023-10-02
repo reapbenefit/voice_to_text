@@ -15,6 +15,10 @@ Voice-to-Text is a Python application that leverages AI4BHARAT models to perform
     - [Installation](#installation)
     - [Usage](#usage)
     - [Configuration](#configuration)
+- [Frappe](#frappe)
+    - [Installation](#installation)
+    - [Locating Samaaja](#locating-samaaja)
+    - [Usage](#usage-1)
 
 - [Contributing](#contributing)
 - [License](#license)
@@ -93,6 +97,89 @@ Before using Voice-to-Text, you need to configure the API credentials. Follow th
    Replace `"your_api_key_here"` with your actual API key/token.
 
 4. Save the `config.json` file.
+
+## Frappe
+
+### Installation
+
+* [**Install Bench & Frappe**](https://github.com/frappe/bench#installation)
+
+* Download the Samaaja app
+   ```bash
+      bench get-app https://github.com/fossunited/Samaaja
+   ```
+      
+
+* Install the app on your site
+   ```bash
+      bench --site <your-site-name-here> install-app samaaja
+   ```
+
+### Locating Samaaja
+For locatiing your Samaaja app follow the given steps :
+
+1. Navigate to frappe folder, open frappe-bench.
+
+2. Navigate to apps/saamaja
+
+3. Open this folder in a VS Code-like editor.
+
+### Usage
+
+To run the Voice-to-Text application in the samaaja interface and make a POST request via the terminal, follow these steps:
+
+1. Inside the "Samaaja" folder, navigate to the "samaaja/api" folder.
+
+2. Open the "voice_to_text" folder in the VS Code-like editor.
+
+3. Locate the "frappe_script.py" file inside the "voice_to_text" folder.
+
+4. Copy the "frappe_script.py" file.
+
+5. Go back to the "api" folder (step 3), and paste the copied "frappe_script.py" file there.
+
+6. Open the "frappe_script.py" file that you've just pasted into the "api" folder.
+
+7. Inside the "frappe_script.py" file, locate the following lines:
+   ```bash
+   API_KEY = "Your_API_KEY_here"
+   INFERENCE_URL = "Your_INFERENCE_URL_here"
+   ```
+
+8. Replace "Your_API_KEY_here" with your actual API key.
+
+9. Replace "Your_INFERENCE_URL_here" with your actual inference URL.
+
+10. Save the changes to the "frappe_script.py" file.
+
+11. Open your terminal or command prompt.
+
+12. Navigate to the project directory:
+
+    ```bash
+    cd path/to/frappe-bench
+    ```
+13. Run frappe-bench:
+    ```bash
+    bench start
+    ```
+
+14. Open another terminal window or tab.
+
+15. Use curl to make a POST request to your Flask API endpoint with the specified parameters, including the audio file:
+      ```bash
+         curl -X POST -F "service_id=your_service_id" -F "src_lang_code=your_language_code" -F "audio_url=http://example.com/path/to/your/audio_file.wav" http://127.0.0.1:8000/api/method/samaaja.api.frappe_script.transcribe_audio
+      ```
+      Replace the following placeholders:
+       - your_service_id with the appropriate service ID from service_ids.xlsx.
+       - your_language_code with the desired language code.
+       - http://example.com/path/to/your/audio_file.wav with the URL to your audio file.
+
+16. Press Enter to make the POST request.
+
+This will send a POST request to your Frappe API via the terminal, including the specified parameters and audio file url. Your Frappe server should process the request and return the transcript.
+
+If you encounter any issues, please ensure that your Frappe server is running on http://127.0.0.1:8000, and that you've followed the steps correctly.
 
 ## Contributing
 
